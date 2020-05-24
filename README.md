@@ -8,21 +8,18 @@ The followirng section describe the setup of the enviroment to run the demo.
 
 ### Prerequisites
 
-* To run this demo it is necesary to have an Edge TPU !
+To run this demo it is necesary to have an Edge TPU along with Edge TPU runtime succesfully installed.
+To install Edge TPU related software see [Coral official documentation.](https://coral.ai/docs/accelerator/get-started)
 
-
-```
-Give examples
-```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+In addition to Edge TPU run time we also need the following python packages:
 
 ```
-Give the example
+numpy>=1.18.4
+matplotlib>=3.2.1
+Pillow>=7.1.2
 ```
 
 And repeat
