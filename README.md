@@ -8,7 +8,7 @@ The followirng section describe the setup of the enviroment to run the demo.
 
 ### Prerequisites
 
-*To run this demo it is necesary to have an Edge TPU !
+* To run this demo it is necesary to have an Edge TPU !
 
 
 ```
