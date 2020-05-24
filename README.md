@@ -1,20 +1,21 @@
 # Diploma demo
 
-This repository is made to easy replicate the results presented in the thesis.
+This repository is made to easly replicate the results presented in our thesis. It also contains C++ implementation 
+of the IoUTraction algoritm as well as the compiled binaries for the x86, ARMv7 and AArch64 architectures.
 
 ## Getting Started
 
-The followirng section describe the setup of the enviroment to run the demo.
+The followirng section describes the setup process of the enviroment to be able to run the demo script.
 
 ### Prerequisites
 
-To run this demo it is necesary to have an Edge TPU along with Edge TPU runtime succesfully installed.
+To run this demo it is necesary to have an Edge TPU device along with Edge TPU runtime succesfully installed.
 To install Edge TPU related software see [Coral official documentation.](https://coral.ai/docs/accelerator/get-started)
 
 
 ### Installing
 
-In addition to Edge TPU run time we also need the following python packages:
+In addition to Edge TPU runtime we also need the following python packages:
 
 ```
 numpy>=1.18.4
@@ -22,65 +23,25 @@ matplotlib>=3.2.1
 Pillow>=7.1.2
 ```
 
-And repeat
+## Running a demo
+
+To run a demo all we need to do is to run the run_demo script with one parameter indicating which graph we want to generate e.g.,
 
 ```
-until finished
+./run_demo -n 1
 ```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
+to generate a first graph.
+To see a detail description of the ./run_demo script run
 
 ```
-Give an example
+./run_demo -h
 ```
 
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Coral official documentation](https://coral.ai/docs/accelerator/get-started) - Edge TPU official documentation
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+## Credits
+To evaluate mAP score for generated results we use the [Cartucho/mAP](https://github.com/Cartucho/mAP) implementation.
 

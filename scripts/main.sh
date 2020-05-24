@@ -50,55 +50,35 @@ HEIGHT=$(cat "${MODEL_DIR}/output_tflite_graph_edgetpu.log" | grep "height:" | s
 WIDTH=$(cat "${MODEL_DIR}/output_tflite_graph_edgetpu.log" | grep "width:" | sed "s/[a-z]*://g")
 
 
+# Create testing directory path 
 if [ "${TYPE}" == "voc" ]; then
     TESTING_DIR=$(echo "../datasets/voc_${WIDTH}x${HEIGHT}" | sed 's/ //g')
-    # 2. generate groung truth
-    # if [ -d "${TESTING_DIR}" ]; then 
-    #     echo 'Ground truth already exist'
-    # else
-    #     echo 'Generating new ground truth testing set'
-    #     python generate_voc_ground_truth.py --width ${WIDTH} --height ${HEIGHT}
-    #fi
 elif [ "${TYPE}" == "detrac" ]; then
     TESTING_DIR=$(echo "../datasets/detrac_${WIDTH}x${HEIGHT}" | sed 's/ //g')
-    #2. generate groung truth
-    # if [ -d "${TESTING_DIR}" ]; then 
-    #     echo 'Ground truth already exist'
-    # else
-    #     echo 'Generating new ground truth testing set'
-    #     python generate_dectrac_ground_truth.py --width ${WIDTH} --height ${HEIGHT}
-    # fi
-elif [ "${TYPE}" == "train" ]; then
-    TESTING_DIR=$(echo "${LOCAL_GIT}/testing/exported/train_${WIDTH}x${HEIGHT}" | sed 's/ //g')
-    #2. generate groung truth
-    if [ -d "${TESTING_DIR}" ]; then 
-        echo 'Ground truth already exist'
-    else
-        echo 'Generating new ground truth testing set'
-        python generate_ground_truth.py --type ${TYPE} --width ${WIDTH} --height ${HEIGHT}
-    fi
-elif [[ ${TYPE} == fold_* ]]; then
-    TESTING_DIR=$(echo "${LOCAL_GIT}/testing/exported/${TYPE}_${WIDTH}x${HEIGHT}" | sed 's/ //g')
-    #2. generate groung truth
-    if [ -d "${TESTING_DIR}" ]; then 
-        echo 'Ground truth already exist'
-    else
-        echo 'Generating new ground truth testing set'
-        python generate_ground_truth.py --type ${TYPE} --width ${WIDTH} --height ${HEIGHT} --fold ${TYPE}
-    fi
+# elif [ "${TYPE}" == "train" ]; then
+#     TESTING_DIR=$(echo "${LOCAL_GIT}/testing/exported/train_${WIDTH}x${HEIGHT}" | sed 's/ //g')
+#     #2. generate groung truth
+#     if [ -d "${TESTING_DIR}" ]; then 
+#         echo 'Ground truth already exist'
+#     else
+#         echo 'Generating new ground truth testing set'
+#         python generate_ground_truth.py --type ${TYPE} --width ${WIDTH} --height ${HEIGHT}
+#     fi
+# elif [[ ${TYPE} == fold_* ]]; then
+#     TESTING_DIR=$(echo "${LOCAL_GIT}/testing/exported/${TYPE}_${WIDTH}x${HEIGHT}" | sed 's/ //g')
+#     #2. generate groung truth
+#     if [ -d "${TESTING_DIR}" ]; then 
+#         echo 'Ground truth already exist'
+#     else
+#         echo 'Generating new ground truth testing set'
+#         python generate_ground_truth.py --type ${TYPE} --width ${WIDTH} --height ${HEIGHT} --fold ${TYPE}
+#     fi
 else
     TESTING_DIR=$(echo "../datasets/${TYPE}_${WIDTH}x${HEIGHT}" | sed 's/ //g')
-    # 2. generate groung truth
-    # if [ -d "${TESTING_DIR}" ]; then 
-    #     echo 'Ground truth already exist'
-    # else
-    #     echo 'Generating new ground truth testing set'
-    #     python generate_ground_truth.py --type ${TYPE} --width ${WIDTH} --height ${HEIGHT}
-    # fi
 fi
 
 
-# 3. generate model results
+# 2. generate model results
 echo "Generating results for model: ${MODEL_NAME} on dataset: ${DATASET_NAME}"
 python generate_model_results.py \
     --model_path="${MODEL_DIR}/output_tflite_graph_edgetpu.tflite" \
@@ -106,15 +86,13 @@ python generate_model_results.py \
     --origin="${ORIGIN}"
 
 
-#echo "${TESTING_DIR}"
-#TESTING_DIR="/home/kopi/local_git/testing/exported/day_540x540"
-# 4. evaluate model results
-# echo "Evaluating results"
+
+# 3. evaluate model results
 python evaluate_results.py \
     --ground_truth="${TESTING_DIR}"
 
 
-rm -rf "${PROJECT_ROOT}/testing/accuracy/model_detection_txts"
+rm -rf "model_detection_txts"
 
 rm -rf ".temp_files"
 rm -rf "output"
