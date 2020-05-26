@@ -4,8 +4,6 @@
 import sys
 import os
 import platform
-sys.path.insert(0, os.environ['RTT'])
-
 
 class Tracker_Wrapper:
     def __init__(self, sigma_l, sigma_h, sigma_iou, t_min, multiple_object = False, python = False):

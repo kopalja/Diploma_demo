@@ -5,7 +5,9 @@ of the IoUTraction algoritm as well as the compiled binaries for the x86, ARMv7 
 
 ## Getting Started
 
-The followirng section describes the setup process of the enviroment to be able to run the demo script.
+The followirng section describes the setup process of the enviroment to be able to run the following demo scripts.
+* run_demo.sh: to generate graphs presented in the thesis.
+* count_cars.py: to count the cars in the video by traction-by-detection algorithm and generate video with bounding boxes.
 
 ### Prerequisites
 
@@ -21,22 +23,36 @@ In addition to Edge TPU runtime we also need the following python packages:
 numpy>=1.18.4
 matplotlib>=3.2.1
 Pillow>=7.1.2
+opencv-python>=4.1.2.30
 ```
 
-## Running a demo
+## Generating graphs
 
-To run a demo all we need to do is to run the run_demo script with one parameter indicating which graph we want to generate e.g.,
+To generate an accuracy graphs all we need to do is to run the run_demo script with one parameter indicating which graph we want to generate e.g.,
 
 ```
 ./run_demo -n 1
 ```
-to generate a first graph.
+to generate the first graph.
 To see a detail description of the ./run_demo script run
 
 ```
 ./run_demo -h
 ```
 
+## Counting cars
+
+To count a number of cars in the given video run 
+
+```
+python count_cars.py --input <path to input video>
+```
+
+For more datail description of the count_cars.py script run
+
+```
+python count_cars.py --help
+```
 
 ## Built With
 
